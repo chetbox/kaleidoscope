@@ -6,11 +6,11 @@
         background: black;
       }
       video {
-        position: fixed;
+        position: absolute;
         left: 50%;
-        width: 50vmax;
         top: 50%;
-        height: 50vmax;
+        width: 58%;
+        height: 58%;
         clip-path: polygon(0 0, 41% 100%, 100% 100%, 100% 41%);
         -webkit-clip-path: polygon(0 0, 41% 100%, 100% 100%, 100% 41%);
         animation-duration: 8s;
@@ -20,88 +20,197 @@
         object-fit: cover;
       }
 
-      video:nth-child(1) {
-        animation-name: spin-1;
+      #them {
+        z-index: 1;
+        position: fixed;
+        width: 100vmax;
+        height: 100vmax;
+        top: 50%;
+        left: 50%;
+        margin-left: -50vmax;
+        margin-top: -50vmax;
       }
 
-      video:nth-child(2) {
-        animation-name: spin-2;
+      #me {
+        z-index: 2;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 20vmax;
+        height: 20vmax;
+        margin-left: -10vmax;
+        margin-top: -10vmax;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 0 10vmax rgba(0,0,0,0.5);
       }
 
-      video:nth-child(3) {
-        animation-name: spin-3;
+      #them video:nth-child(1) {
+        animation-name: spin-cw-1;
       }
 
-      video:nth-child(4) {
-        animation-name: spin-4;
+      #them video:nth-child(2) {
+        animation-name: spin-cw-2;
       }
 
-      video:nth-child(5) {
-        animation-name: spin-5;
+      #them video:nth-child(3) {
+        animation-name: spin-cw-3;
       }
 
-      video:nth-child(6) {
-        animation-name: spin-6;
+      #them video:nth-child(4) {
+        animation-name: spin-cw-4;
       }
 
-      video:nth-child(7) {
-        animation-name: spin-7;
+      #them video:nth-child(5) {
+        animation-name: spin-cw-5;
       }
 
-      video:nth-child(8) {
-        animation-name: spin-8;
+      #them video:nth-child(6) {
+        animation-name: spin-cw-6;
       }
 
-      @keyframes spin-1 {
+      #them video:nth-child(7) {
+        animation-name: spin-cw-7;
+      }
+
+      #them video:nth-child(8) {
+        animation-name: spin-cw-8;
+      }
+
+      #me video:nth-child(1) {
+        animation-name: spin-ccw-1;
+      }
+
+      #me video:nth-child(2) {
+        animation-name: spin-ccw-2;
+      }
+
+      #me video:nth-child(3) {
+        animation-name: spin-ccw-3;
+      }
+
+      #me video:nth-child(4) {
+        animation-name: spin-ccw-4;
+      }
+
+      #me video:nth-child(5) {
+        animation-name: spin-ccw-5;
+      }
+
+      #me video:nth-child(6) {
+        animation-name: spin-ccw-6;
+      }
+
+      #me video:nth-child(7) {
+        animation-name: spin-ccw-7;
+      }
+
+      #me video:nth-child(8) {
+        animation-name: spin-ccw-8;
+      }
+
+      @keyframes spin-cw-1 {
         0%   { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
 
-      @keyframes spin-2 {
+      @keyframes spin-ccw-1 {
+        100% { transform: rotate(0deg); }
+        0% { transform: rotate(360deg); }
+      }
+
+      @keyframes spin-cw-2 {
         0% { transform: rotate(45deg) scaleX(-1); }
         100% { transform: rotate(405deg) scaleX(-1); }
       }
 
-      @keyframes spin-3 {
+      @keyframes spin-ccw-2 {
+        100% { transform: rotate(45deg) scaleX(-1); }
+        0% { transform: rotate(405deg) scaleX(-1); }
+      }
+
+      @keyframes spin-cw-3 {
         0% { transform: rotate(90deg); }
         100% { transform: rotate(450deg); }
       }
 
-      @keyframes spin-4 {
+      @keyframes spin-ccw-3 {
+        100% { transform: rotate(90deg); }
+        0% { transform: rotate(450deg); }
+      }
+
+      @keyframes spin-cw-4 {
         0% { transform: rotate(135deg) scaleX(-1); }
         100% { transform: rotate(495deg) scaleX(-1); }
       }
 
-      @keyframes spin-5 {
+      @keyframes spin-ccw-4 {
+        100% { transform: rotate(135deg) scaleX(-1); }
+        0% { transform: rotate(495deg) scaleX(-1); }
+      }
+
+      @keyframes spin-cw-5 {
         0% { transform: rotate(180deg); }
         100% { transform: rotate(540deg); }
       }
 
-      @keyframes spin-6 {
+      @keyframes spin-ccw-5 {
+        100% { transform: rotate(180deg); }
+        0% { transform: rotate(540deg); }
+      }
+
+      @keyframes spin-cw-6 {
         0% { transform: rotate(225deg) scaleX(-1); }
         100% { transform: rotate(585deg) scaleX(-1); }
       }
 
-      @keyframes spin-7 {
+      @keyframes spin-ccw-6 {
+        100% { transform: rotate(225deg) scaleX(-1); }
+        0% { transform: rotate(585deg) scaleX(-1); }
+      }
+
+      @keyframes spin-cw-7 {
         0% { transform: rotate(270deg); }
         100% { transform: rotate(630deg); }
       }
 
-      @keyframes spin-8 {
+      @keyframes spin-ccw-7 {
+        100% { transform: rotate(270deg); }
+        0% { transform: rotate(630deg); }
+      }
+
+      @keyframes spin-cw-8 {
         0% { transform: rotate(315deg) scaleX(-1); }
         100% { transform: rotate(675deg) scaleX(-1); }
+      }
+
+      @keyframes spin-ccw-8 {
+        100% { transform: rotate(315deg) scaleX(-1); }
+        0% { transform: rotate(675deg) scaleX(-1); }
       }
     </style>
   </head>
   <body>
-    <video></video>
-    <video></video>
-    <video></video>
-    <video></video>
-    <video></video>
-    <video></video>
-    <video></video>
-    <video></video>
+    <div id="them">
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+    </div>
+    <div id="me">
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+        <video></video>
+    </div>
   </body>
 
   <!-- Firebase -->
@@ -132,8 +241,8 @@
         });
       });
 
-      function showVideo(stream) {
-        const videoElements = document.querySelectorAll('video');
+      function showVideo(parentSelector, stream) {
+        const videoElements = document.querySelectorAll(parentSelector + ' video');
         videoElements.forEach(videoElement => {
           videoElement.srcObject = stream;
           videoElement.play();
@@ -146,7 +255,7 @@
         peer.on('error', reject);
         peer.on('open', () => resolve(peer));
         peer.on('call', call => {
-          call.on('stream', () => showVideo(call.remoteStream));
+          call.on('stream', () => showVideo('#them', call.remoteStream));
           call.answer();
         });
         peer.on('WebRTC error', e => console.log(e));
@@ -200,6 +309,7 @@
       const user = await signIn();
       const peer = await createWebRTCPeer();
       const myVideoStream = await navigator.mediaDevices.getUserMedia({video: true});
+      showVideo('#me', myVideoStream);
       await unregisterConnectionOnDisconnect(user.uid);
       let shouldRegisterNewConnection = true;
 
@@ -226,7 +336,7 @@
           peer.call(remotePeerId, myVideoStream);
           await whenDisconnected(remoteUid);
 
-          showVideo(null);
+          showVideo('#them', null);
 
         } catch (error) {
 
