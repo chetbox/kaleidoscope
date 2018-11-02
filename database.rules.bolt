@@ -3,9 +3,15 @@ path /connection {
 }
 
 path /connection/{uid} is Connection {
-  create() { isCurrentUser(uid) && this.watching == null }
-  delete() { isCurrentUser(uid) }
-  update() { isCloudFunction() && this.peerId == prior(this.peerId) && prior(this).watching == null && this.watching != null && isOnline(this.watching) }
+  read() { isCurrentUser(this.watching) }
+  write() {
+    (isCurrentUser(uid) && (this == null || this.watching == null)) ||
+    (isCloudFunction() && this.peerId == prior(this.peerId) && prior(this).watching == null && this.watching != null && isOnline(this.watching))
+  }
+}
+
+path /stats/connections/count is NaturalNumber {
+  write() { isCloudFunction() }
 }
 
 type Connection {
@@ -13,12 +19,16 @@ type Connection {
   watching: String | Null;
 }
 
+type NaturalNumber extends Number {
+  validate() { (this + '').test(/^\d+$/) }
+}
+
 isOnline(uid) {
   root.connection[uid] != null
 }
 
 isCurrentUser(uid) {
-  auth != null && auth.uid == uid
+  auth != null && uid != null && auth.uid == uid
 }
 
 isCloudFunction() {
