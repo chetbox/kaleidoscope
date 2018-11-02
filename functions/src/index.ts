@@ -38,7 +38,8 @@ export const requestConnection = functions.https.onCall(async (data, context) =>
   return connections[randomWaitingUid];
 });
 
-export const countConnections = functions.https.onCall(async (data, context) => {
-  const connections = (await database.ref('/connection').once('value')).val() || {} as Connections;
-  return Object.keys(connections).length;
+export const countConnections = functions.database.ref('/connection').onWrite(async event => {
+  const connections = event.after.val() || {} as Connections;
+  const count = Object.keys(connections).length;
+  await database.ref('/stats').child('connections').child('count').set(count);
 });
