@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html {
+        background: black;
+      }
+      video {
+        position: fixed;
+        left: 50%;
+        width: 50vmax;
+        top: 50%;
+        height: 50vmax;
+        clip-path: polygon(0 0, 41% 100%, 100% 100%, 100% 41%);
+        -webkit-clip-path: polygon(0 0, 41% 100%, 100% 100%, 100% 41%);
+        animation-duration: 8s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        transform-origin: 0% 0%;
+        object-fit: cover;
+      }
+
+      video:nth-child(1) {
+        animation-name: spin-1;
+      }
+
+      video:nth-child(2) {
+        animation-name: spin-2;
+      }
+
+      video:nth-child(3) {
+        animation-name: spin-3;
+      }
+
+      video:nth-child(4) {
+        animation-name: spin-4;
+      }
+
+      video:nth-child(5) {
+        animation-name: spin-5;
+      }
+
+      video:nth-child(6) {
+        animation-name: spin-6;
+      }
+
+      video:nth-child(7) {
+        animation-name: spin-7;
+      }
+
+      video:nth-child(8) {
+        animation-name: spin-8;
+      }
+
+      @keyframes spin-1 {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes spin-2 {
+        0% { transform: rotate(45deg) scaleX(-1); }
+        100% { transform: rotate(405deg) scaleX(-1); }
+      }
+
+      @keyframes spin-3 {
+        0% { transform: rotate(90deg); }
+        100% { transform: rotate(450deg); }
+      }
+
+      @keyframes spin-4 {
+        0% { transform: rotate(135deg) scaleX(-1); }
+        100% { transform: rotate(495deg) scaleX(-1); }
+      }
+
+      @keyframes spin-5 {
+        0% { transform: rotate(180deg); }
+        100% { transform: rotate(540deg); }
+      }
+
+      @keyframes spin-6 {
+        0% { transform: rotate(225deg) scaleX(-1); }
+        100% { transform: rotate(585deg) scaleX(-1); }
+      }
+
+      @keyframes spin-7 {
+        0% { transform: rotate(270deg); }
+        100% { transform: rotate(630deg); }
+      }
+
+      @keyframes spin-8 {
+        0% { transform: rotate(315deg) scaleX(-1); }
+        100% { transform: rotate(675deg) scaleX(-1); }
+      }
+    </style>
+  </head>
+  <body>
+    <video></video>
+    <video></video>
+    <video></video>
+    <video></video>
+    <video></video>
+    <video></video>
+    <video></video>
+    <video></video>
+  </body>
+
+  <!-- Firebase -->
+  <script src="/__/firebase/5.5.6/firebase-app.js"></script>
+  <script src="/__/firebase/5.5.6/firebase-auth.js"></script>
+  <script src="/__/firebase/5.5.6/firebase-database.js"></script>
+  <script src="/__/firebase/5.5.6/firebase-functions.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
+  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script>
+    (async () => {
+
+      const signIn =
+      () => new Promise((resolve, reject) => {
+        const auth = firebase.auth();
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            resolve(user);
+            unsubscribe();
+          } else {
+            try {
+              await firebase.auth().signInAnonymously();
+            } catch (error) {
+              reject(error);
+            }
+          }
+        });
+      });
+
+      function showVideo(stream) {
+        console.log('showVideo', stream);
+        const videoElements = document.querySelectorAll('video');
+        videoElements.forEach(videoElement => {
+          videoElement.srcObject = stream;
+          videoElement.play();
+        });
+      }
+
+      const createWebRTCPeer =
+      () => new Promise((resolve, reject) => {
+        const peer = new Peer({key: '0e5fd0c0-9cb3-42e3-a171-1bda6fe3b9f9'});
+        peer.on('error', reject);
+        peer.on('open', () => resolve(peer));
+        peer.on('call', call => {
+          console.log('call', call);
+          call.on('stream', () => showVideo(call.remoteStream));
+          call.answer();
+        });
+        peer.on('WebRTC error', e => console.log(e));
+      });
+
+      async function registerConnection(uid, peerId) {
+        const database = firebase.database();
+        const connectionRef = database.ref('/connection').child(uid);
+
+        database.ref('.info/connected').on('value', async (snapshot) => {
+          if (!snapshot.val()) return;
+
+          await connectionRef.onDisconnect().remove();
+          return connectionRef.set({peerId});
+        });
+      }
+
+      async function getRemotePeerId() {
+        const remoteConnection = await firebase.functions().httpsCallable('requestConnection')();
+        return (remoteConnection.data || {}).peerId;
+      }
+
+      const callClosed =
+      (call) => new Promise((resolve) => call.on('close', resolve));
+
+      const user = await signIn();
+      const peer = await createWebRTCPeer();
+      console.log('localPeerId', peer.id);
+      const myVideoStream = await navigator.mediaDevices.getUserMedia({video: true});
+      await registerConnection(user.uid, peer.id);
+
+      while (true) {
+        const remotePeerId = await getRemotePeerId();
+        console.log('remotePeerId', remotePeerId);
+
+        if (!remotePeerId) {
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          continue;
+        }
+
+        console.log('calling', remotePeerId, myVideoStream);
+        const call = peer.call(remotePeerId, myVideoStream);
+        await callClosed(call); // TODO: replace with user disconnected
+        showVideo(null);
+      }
+
+    })();
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128420985-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128420985-1');
+  </script>
+</html>

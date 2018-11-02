@@ -1,0 +1,16 @@
+{
+  "name": "kaleidoscope",
+  "version": "0.0.1",
+  "description": "",
+  "devDependencies": {
+    "firebase-bolt": "^0.8.4",
+    "firebase-tools": "^6.0.0"
+  },
+  "scripts": {
+    "build": "firebase-bolt database.rules.bolt -o .database.rules.json",
+    "deploy": "npm run build && firebase deploy",
+    "start": "firebase serve -p 3000"
+  },
+  "author": "",
+  "license": "MIT"
+}

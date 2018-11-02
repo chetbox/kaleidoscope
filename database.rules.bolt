@@ -1,0 +1,26 @@
+path /connection {
+  read() { isCloudFunction() }
+}
+
+path /connection/{uid} is Connection {
+  create() { isCurrentUser(uid) && this.watching == null }
+  delete() { isCurrentUser(uid) }
+  update() { isCloudFunction() && this.peerId == prior(this.peerId) && prior(this).watching == null && this.watching != null && isOnline(this.watching) }
+}
+
+type Connection {
+  peerId: String;
+  watching: String | Null;
+}
+
+isOnline(uid) {
+  root.connection[uid] != null
+}
+
+isCurrentUser(uid) {
+  auth != null && auth.uid == uid
+}
+
+isCloudFunction() {
+  auth != null && auth.uid == 'cloudfunction@kaleidoscope'
+}
