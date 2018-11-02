@@ -133,7 +133,6 @@
       });
 
       function showVideo(stream) {
-        console.log('showVideo', stream);
         const videoElements = document.querySelectorAll('video');
         videoElements.forEach(videoElement => {
           videoElement.srcObject = stream;
@@ -147,52 +146,94 @@
         peer.on('error', reject);
         peer.on('open', () => resolve(peer));
         peer.on('call', call => {
-          console.log('call', call);
           call.on('stream', () => showVideo(call.remoteStream));
           call.answer();
         });
         peer.on('WebRTC error', e => console.log(e));
       });
 
-      async function registerConnection(uid, peerId) {
+      async function unregisterConnectionOnDisconnect(uid) {
         const database = firebase.database();
         const connectionRef = database.ref('/connection').child(uid);
 
         database.ref('.info/connected').on('value', async (snapshot) => {
           if (!snapshot.val()) return;
-
           await connectionRef.onDisconnect().remove();
-          return connectionRef.set({peerId});
         });
       }
 
-      async function getRemotePeerId() {
-        const remoteConnection = await firebase.functions().httpsCallable('requestConnection')();
-        return (remoteConnection.data || {}).peerId;
+      function registerConnection(uid, peerId) {
+        const database = firebase.database();
+        const connectionRef = database.ref('/connection').child(uid);
+        return connectionRef.set({peerId});
       }
 
-      const callClosed =
-      (call) => new Promise((resolve) => call.on('close', resolve));
+      async function getRemoteUid() {
+        const remoteConnection = await firebase.functions().httpsCallable('requestConnection')();
+        return remoteConnection.data;
+      }
+
+      async function getPeerId(uid) {
+        const database = firebase.database();
+        const snapshot = await database.ref('/connection').child(uid).once('value');
+        return snapshot.val().peerId;
+      }
+
+      const whenDisconnected = (uid) => new Promise(resolve => {
+        const database = firebase.database();
+        const remoteConnectionRef = database.ref('/connection').child(uid);
+        const valueCallback = remoteConnectionRef.on(
+          'value',
+          snapshot => {
+            if (!snapshot.exists()) {
+              resolve();
+              remoteConnectionRef.off('value', valueCallback);
+            }
+          },
+          error => {
+            resolve();
+            remoteConnectionRef.off('value', valueCallback);
+          }
+        );
+      });
 
       const user = await signIn();
       const peer = await createWebRTCPeer();
-      console.log('localPeerId', peer.id);
       const myVideoStream = await navigator.mediaDevices.getUserMedia({video: true});
-      await registerConnection(user.uid, peer.id);
+      await unregisterConnectionOnDisconnect(user.uid);
+      let shouldRegisterNewConnection = true;
 
       while (true) {
-        const remotePeerId = await getRemotePeerId();
-        console.log('remotePeerId', remotePeerId);
+        try {
+          if (shouldRegisterNewConnection) {
+            await registerConnection(user.uid, peer.id);
+            shouldRegisterNewConnection = false;
+          }
 
-        if (!remotePeerId) {
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-          continue;
+          const remoteUid = await getRemoteUid();
+          if (!remoteUid) {
+            await new Promise(resolve => setTimeout(resolve, 4000));
+            continue;
+          }
+
+          const remotePeerId = await getPeerId(remoteUid);
+          if (!remotePeerId) {
+            await new Promise(resolve => setTimeout(resolve, 4000));
+            continue;
+          }
+
+          shouldRegisterNewConnection = true;
+          peer.call(remotePeerId, myVideoStream);
+          await whenDisconnected(remoteUid);
+
+          showVideo(null);
+
+        } catch (error) {
+
+          console.error('Something went wrong. Trying again in 10s.', error);
+          await new Promise(resolve => setTimeout(resolve, 10000));
+          shouldRegisterNewConnection = true;
         }
-
-        console.log('calling', remotePeerId, myVideoStream);
-        const call = peer.call(remotePeerId, myVideoStream);
-        await callClosed(call); // TODO: replace with user disconnected
-        showVideo(null);
       }
 
     })();
