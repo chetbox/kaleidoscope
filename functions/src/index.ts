@@ -30,12 +30,13 @@ export const requestConnection = functions.https.onCall(async (data, context) =>
   console.log('candidates', uidsWaiting);
 
   if (uidsWaiting.length === 0)
-    return;
+    return null;
 
   const randomWaitingUid = uidsWaiting[Math.floor(Math.random() * uidsWaiting.length)];
   console.log('selected', randomWaitingUid);
 
-  return connections[randomWaitingUid];
+  await database.ref('/connection').child(randomWaitingUid).child('watching').set(myUid);
+  return randomWaitingUid;
 });
 
 export const countConnections = functions.database.ref('/connection').onWrite(async event => {
