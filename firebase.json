@@ -1,5 +1,6 @@
 {
   "database": {
+    "predeploy": "npm run build",
     "rules": ".database.rules.json"
   },
   "functions": {
