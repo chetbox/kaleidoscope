@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Kaleidoscope Roulette</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <!-- getmdl.io -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
     <style>
       html {
         background: black;
@@ -43,6 +52,57 @@
         border-radius: 50%;
         overflow: hidden;
         box-shadow: 0 0 10vmax rgba(0,0,0,0.5);
+      }
+
+      #me .controls {
+        background: #eee;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        align-items: center;
+        justify-content: center;
+        display: none;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+      }
+
+      body.camera-permission-required #me .controls {
+        display: flex;
+      }
+
+      @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      #me .controls > * {
+        font-size: 3em;
+        margin: 0.2em;
+      }
+
+      #me .controls i.material-icons {
+        color: #555;
+      }
+
+      #camera-permission-button-container {
+        -webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        animation: shake 7s cubic-bezier(.36,.07,.19,.97) infinite both;
+      }
+
+      @keyframes shake {
+        11%, 19% {
+          transform: translate3d(-1px, 0, 0); }
+        12%, 18% {
+          transform: translate3d(2px, 0, 0);
+        }
+        13%, 15%, 17% {
+          transform: translate3d(-4px, 0, 0);
+        }
+        14%, 16% {
+          transform: translate3d(4px, 0, 0);
+        }
       }
 
       #them video:nth-child(1) {
@@ -192,24 +252,32 @@
   </head>
   <body>
     <div id="them">
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
     </div>
     <div id="me">
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
-        <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <video></video>
+      <div class="controls">
+          <i class="material-icons">videocam</i>
+          <span id="camera-permission-button-container">
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="camera-permission-button">
+              <input type="checkbox" id="camera-permission-button" class="mdl-switch__input">
+            </label>
+          </span>
+      </div>
     </div>
   </body>
 
@@ -239,6 +307,43 @@
             }
           }
         });
+      });
+
+      async function isCameraPermissionRequired() {
+        const cameras = (await navigator.mediaDevices.enumerateDevices()).filter(device => device.kind === 'videoinput');
+        for (const camera of cameras) {
+          if (camera.label) return false;
+        }
+        return true;
+      }
+
+      function showCameraPermissionButton(enabled) {
+        document.body.classList[enabled ? 'add' : 'remove']('camera-permission-required');
+      }
+
+      const getCameraStream =
+      () => new Promise(async resolve => {
+        const permissionButton = document.getElementById('camera-permission-button');
+        const getUserVideo = () => navigator.mediaDevices.getUserMedia({video: true});
+        if (await isCameraPermissionRequired()) {
+          async function permissionClickListener(e) {
+            permissionButton.removeEventListener('click', permissionClickListener);
+
+            try {
+              const stream = await getUserVideo();
+              showCameraPermissionButton(false);
+              resolve(stream);
+            } catch(error) {
+              console.warn('Could not get video stream', error.toString());
+              resolve(await getCameraStream());
+            }
+          }
+          permissionButton.parentElement.MaterialSwitch.off();
+          permissionButton.addEventListener('click', permissionClickListener);
+          showCameraPermissionButton(true);
+        } else {
+          resolve(getUserVideo());
+        }
       });
 
       function showVideo(parentSelector, stream) {
@@ -308,7 +413,7 @@
 
       const user = await signIn();
       const peer = await createWebRTCPeer();
-      const myVideoStream = await navigator.mediaDevices.getUserMedia({video: true});
+      const myVideoStream = await getCameraStream();
       showVideo('#me', myVideoStream);
       await unregisterConnectionOnDisconnect(user.uid);
       let shouldRegisterNewConnection = true;
