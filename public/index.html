@@ -248,6 +248,28 @@
         100% { transform: rotate(315deg) scaleX(-1); }
         0% { transform: rotate(675deg) scaleX(-1); }
       }
+
+      #about {
+        z-index: 3;
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        width: 20em;
+        margin-left: -10em;
+        color: #fff;
+        text-shadow: 0 0 0.5em #000;
+        opacity: 0.67;
+        text-align: center;
+      }
+      #about a {
+        color: inherit;
+      }
+      #about p {
+        margin: 0;
+      }
+      #about .fork-me {
+        font-size: 0.8em;
+      }
     </style>
   </head>
   <body>
@@ -278,6 +300,10 @@
             </label>
           </span>
       </div>
+    </div>
+    <div id="about">
+      <p>Made with &#x2764; by <a href="https://chetbox.com">chetbox</a></p>
+      <p class="fork-me"><a href="https://github.com/chetbox/kaleidoscope">Fork me</a> on GitHub</p>
     </div>
   </body>
 
