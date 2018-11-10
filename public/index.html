@@ -5,6 +5,9 @@
 
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
+    <!-- Web animation polyfill -->
+    <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations.min.js"></script>
+
     <!-- getmdl.io -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-amber.min.css">
@@ -22,9 +25,6 @@
         height: 58%;
         clip-path: polygon(0 0, 41% 100%, 100% 100%, 100% 41%);
         -webkit-clip-path: polygon(0 0, 41% 100%, 100% 100%, 100% 41%);
-        animation-duration: 8s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
         transform-origin: 0% 0%;
         object-fit: cover;
       }
@@ -105,150 +105,6 @@
         }
       }
 
-      #them video:nth-child(1) {
-        animation-name: spin-cw-1;
-      }
-
-      #them video:nth-child(2) {
-        animation-name: spin-cw-2;
-      }
-
-      #them video:nth-child(3) {
-        animation-name: spin-cw-3;
-      }
-
-      #them video:nth-child(4) {
-        animation-name: spin-cw-4;
-      }
-
-      #them video:nth-child(5) {
-        animation-name: spin-cw-5;
-      }
-
-      #them video:nth-child(6) {
-        animation-name: spin-cw-6;
-      }
-
-      #them video:nth-child(7) {
-        animation-name: spin-cw-7;
-      }
-
-      #them video:nth-child(8) {
-        animation-name: spin-cw-8;
-      }
-
-      #me video:nth-child(1) {
-        animation-name: spin-ccw-1;
-      }
-
-      #me video:nth-child(2) {
-        animation-name: spin-ccw-2;
-      }
-
-      #me video:nth-child(3) {
-        animation-name: spin-ccw-3;
-      }
-
-      #me video:nth-child(4) {
-        animation-name: spin-ccw-4;
-      }
-
-      #me video:nth-child(5) {
-        animation-name: spin-ccw-5;
-      }
-
-      #me video:nth-child(6) {
-        animation-name: spin-ccw-6;
-      }
-
-      #me video:nth-child(7) {
-        animation-name: spin-ccw-7;
-      }
-
-      #me video:nth-child(8) {
-        animation-name: spin-ccw-8;
-      }
-
-      @keyframes spin-cw-1 {
-        0%   { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-
-      @keyframes spin-ccw-1 {
-        100% { transform: rotate(0deg); }
-        0% { transform: rotate(360deg); }
-      }
-
-      @keyframes spin-cw-2 {
-        0% { transform: rotate(45deg) scaleX(-1); }
-        100% { transform: rotate(405deg) scaleX(-1); }
-      }
-
-      @keyframes spin-ccw-2 {
-        100% { transform: rotate(45deg) scaleX(-1); }
-        0% { transform: rotate(405deg) scaleX(-1); }
-      }
-
-      @keyframes spin-cw-3 {
-        0% { transform: rotate(90deg); }
-        100% { transform: rotate(450deg); }
-      }
-
-      @keyframes spin-ccw-3 {
-        100% { transform: rotate(90deg); }
-        0% { transform: rotate(450deg); }
-      }
-
-      @keyframes spin-cw-4 {
-        0% { transform: rotate(135deg) scaleX(-1); }
-        100% { transform: rotate(495deg) scaleX(-1); }
-      }
-
-      @keyframes spin-ccw-4 {
-        100% { transform: rotate(135deg) scaleX(-1); }
-        0% { transform: rotate(495deg) scaleX(-1); }
-      }
-
-      @keyframes spin-cw-5 {
-        0% { transform: rotate(180deg); }
-        100% { transform: rotate(540deg); }
-      }
-
-      @keyframes spin-ccw-5 {
-        100% { transform: rotate(180deg); }
-        0% { transform: rotate(540deg); }
-      }
-
-      @keyframes spin-cw-6 {
-        0% { transform: rotate(225deg) scaleX(-1); }
-        100% { transform: rotate(585deg) scaleX(-1); }
-      }
-
-      @keyframes spin-ccw-6 {
-        100% { transform: rotate(225deg) scaleX(-1); }
-        0% { transform: rotate(585deg) scaleX(-1); }
-      }
-
-      @keyframes spin-cw-7 {
-        0% { transform: rotate(270deg); }
-        100% { transform: rotate(630deg); }
-      }
-
-      @keyframes spin-ccw-7 {
-        100% { transform: rotate(270deg); }
-        0% { transform: rotate(630deg); }
-      }
-
-      @keyframes spin-cw-8 {
-        0% { transform: rotate(315deg) scaleX(-1); }
-        100% { transform: rotate(675deg) scaleX(-1); }
-      }
-
-      @keyframes spin-ccw-8 {
-        100% { transform: rotate(315deg) scaleX(-1); }
-        0% { transform: rotate(675deg) scaleX(-1); }
-      }
-
       #about {
         z-index: 3;
         position: fixed;
@@ -317,6 +173,22 @@
   <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
   <script>
     (async () => {
+
+      function startKaleidoscope(elements, reverse) {
+        elements.forEach((element, index) => {
+          const keyFrames = [
+            { transform: 'rotate(' + ((360 / elements.length) * index) + 'deg) scaleX(' + (index % 2 ? 1 : -1) + ')' },
+            { transform: 'rotate(' + ((360 / elements.length) * index + 360) + 'deg) scaleX(' + (index % 2 ? 1 : -1) + ')' }
+          ];
+          element.animate(
+            reverse ? keyFrames.reverse() : keyFrames,
+            {
+              duration: 8000,
+              iterations: Infinity
+            }
+          );
+        });
+      }
 
       const signIn =
       () => new Promise((resolve, reject) => {
@@ -437,6 +309,8 @@
         );
       });
 
+      startKaleidoscope(document.querySelectorAll('#them video'), false);
+      startKaleidoscope(document.querySelectorAll('#me video'), true);
       const user = await signIn();
       const peer = await createWebRTCPeer();
       const myVideoStream = await getCameraStream();
