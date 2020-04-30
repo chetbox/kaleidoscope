@@ -126,9 +126,45 @@
       #about .fork-me {
         font-size: 0.8em;
       }
+
+      body.me-connected:not(.them-connected) #help {
+        display: block;
+      }
+      #help {
+        display: none;
+        color: white;
+        font-weight: 100;
+        margin-top: 12vh;
+        text-align: center;
+        font-size: 2em;
+        line-height: 1.25em;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        animation: fadeIn 1s;
+      }
+      #help a {
+        color: inherit;
+        font-weight: inherit;
+      }
+      #help:hover a {
+        text-decoration: underline;
+      }
+      #help button {
+        color: inherit;
+      }
     </style>
   </head>
   <body>
+    <p id="help">
+      Ask a friend to join
+      <br />
+      <a disabled type="text" class="url"></a>
+      <button class="copy-url mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+        <i class="material-icons">file_copy</i>
+      </button>
+    </p>
     <div id="them">
       <video></video>
       <video></video>
@@ -172,6 +208,13 @@
 
   <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
   <script>
+    const urlElement = document.querySelector('#help .url');
+    urlElement.textContent = location.href;
+    document.querySelector('#help .copy-url').addEventListener('click', async function(e) {
+      e.preventDefault();
+      await navigator.clipboard.writeText(urlElement.textContent);
+    });
+
     (async () => {
 
       function startKaleidoscope(elements, reverse) {
@@ -260,6 +303,7 @@
         peer.on('call', call => {
           call.on('stream', () => showVideo('#them', call.remoteStream));
           call.answer();
+          document.body.classList.add('them-connected');
         });
         peer.on('WebRTC error', e => console.log(e));
       });
@@ -315,6 +359,7 @@
       const peer = await createWebRTCPeer();
       const myVideoStream = await getCameraStream();
       showVideo('#me', myVideoStream);
+      document.body.classList.add('me-connected');
       await unregisterConnectionOnDisconnect(user.uid);
       let shouldRegisterNewConnection = true;
 
@@ -342,6 +387,7 @@
           await whenDisconnected(remoteUid);
 
           showVideo('#them', null);
+          document.body.classList.remove('them-connected');
 
         } catch (error) {
 
