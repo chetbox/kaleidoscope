@@ -15,7 +15,7 @@
   "dependencies": {
     "firebase-admin": "^8.9.2",
     "firebase-functions": "^3.3.0",
-    "grpc": "^1.24.2"
+    "grpc": "^1.24.9"
   },
   "devDependencies": {
     "typescript": "^3.7.5"
