@@ -6,6 +6,7 @@
     "firebase-bolt": "^0.8.4"
   },
   "scripts": {
+    "postinstall": "cd functions && npm install",
     "build": "firebase-bolt database.rules.bolt -o .database.rules.json",
     "deploy": "firebase deploy --force",
     "start": "firebase serve -p 3000"
