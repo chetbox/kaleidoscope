@@ -1,16 +1,12 @@
-import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { onCall, HttpsError } from 'firebase-functions/v2/https';
+import { onValueWritten } from 'firebase-functions/v2/database';
 
-const config = functions.config().firebase;
-admin.initializeApp(config
-  ? {
-    databaseAuthVariableOverride: {
-      uid: 'cloudfunction@kaleidoscope'
-    },
-    ...config
+admin.initializeApp({
+  databaseAuthVariableOverride: {
+    uid: 'cloudfunction@kaleidoscope'
   }
-  : config
-);
+});
 
 const database = admin.database();
 
@@ -21,8 +17,11 @@ interface Connection {
 
 type Connections = { [key: string]: Connection }
 
-export const requestConnection = functions.https.onCall(async (data, context) => {
-  const myUid = context.auth.uid;
+export const requestConnectionV2 = onCall(async (request) => {
+  if (!request.auth) {
+    throw new HttpsError('unauthenticated', 'User must be authenticated');
+  }
+  const myUid = request.auth.uid;
   const connections = (await database.ref('/connection').once('value')).val() || {} as Connections;
 
   const uidsOnline = Object.keys(connections).filter(uid => uid !== myUid);
@@ -39,8 +38,8 @@ export const requestConnection = functions.https.onCall(async (data, context) =>
   return randomWaitingUid;
 });
 
-export const countConnections = functions.database.ref('/connection').onWrite(async event => {
-  const connections = event.after.val() || {} as Connections;
+export const countConnectionsV2 = onValueWritten('/connection', async (event) => {
+  const connections = event.data.after.val() || {} as Connections;
   const count = Object.keys(connections).length;
   await database.ref('/stats').child('connections').child('count').set(count);
 });
