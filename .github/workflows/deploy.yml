@@ -2,8 +2,6 @@ name: Build and Deploy
 
 on:
   push:
-    branches:
-      - master
 
 jobs:
   build-and-deploy:
@@ -26,4 +24,5 @@ jobs:
         run: npm run build
 
       - name: Deploy to Firebase
+        if: github.ref == 'refs/heads/master'
         run: npm run deploy -- --token ${{ secrets.FIREBASE_TOKEN }}
