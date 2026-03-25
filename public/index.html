@@ -325,7 +325,7 @@
       }
 
       async function getRemoteUid() {
-        const remoteConnection = await firebase.functions().httpsCallable('requestConnection')();
+        const remoteConnection = await firebase.functions().httpsCallable('requestConnectionV2')();
         return remoteConnection.data;
       }
 
