@@ -23,6 +23,10 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Install firebase-tools
+        if: github.ref == 'refs/heads/master'
+        run: npm install -g firebase-tools
+
       - name: Deploy to Firebase
         if: github.ref == 'refs/heads/master'
         run: npm run deploy -- --token ${{ secrets.FIREBASE_TOKEN }}
