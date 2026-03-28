@@ -3,10 +3,9 @@ import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { onValueWritten } from 'firebase-functions/v2/database';
 
 initializeApp({
-  databaseAuthVariableOverride: {
-    uid: 'cloudfunction@kaleidoscope'
-  }
+  databaseURL: "https://kaleidoscope-44d3f.firebaseio.com"
 });
+
 
 interface Connection {
   peerId: String;
