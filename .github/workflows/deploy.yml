@@ -17,11 +17,16 @@ jobs:
           node-version-file: 'functions/package.json'
           cache: 'npm'
 
+      - name: Enable Corepack # see https://yarnpkg.com/getting-started/install
+        run: |
+          npm install -g corepack
+          corepack enable yarn
+
       - name: Install dependencies
-        run: npm install
+        run: yarn
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Install firebase-tools
         if: github.ref == 'refs/heads/master'
