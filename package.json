@@ -7,7 +7,9 @@
   },
   "scripts": {
     "postinstall": "cd functions && npm install",
-    "build": "firebase-bolt database.rules.bolt -o .database.rules.json",
+    "build:database": "firebase-bolt database.rules.bolt -o .database.rules.json",
+    "build:functions": "(cd functions && npm run build)",
+    "build": "npm run build:database && npm run build:functions",
     "deploy": "firebase deploy --force",
     "start": "firebase serve -p 3000"
   },
