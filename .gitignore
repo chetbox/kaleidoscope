@@ -8,6 +8,14 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 
+# Yarn modern
+.yarn/*
+!.yarn/cache
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versionss
+
 # Firebase cache
 .firebase/
 
