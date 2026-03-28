@@ -2,17 +2,20 @@
   "name": "kaleidoscope",
   "version": "0.0.1",
   "description": "",
+  "private": true,
+  "workspaces": [
+    "functions"
+  ],
   "devDependencies": {
     "firebase-bolt": "^0.8.4"
   },
   "scripts": {
-    "postinstall": "cd functions && npm install",
     "build:database": "firebase-bolt database.rules.bolt -o .database.rules.json",
-    "build:functions": "(cd functions && npm run build)",
-    "build": "npm run build:database && npm run build:functions",
+    "build": "yarn run build:database && yarn workspace functions run build",
     "deploy": "firebase deploy --force",
     "start": "firebase serve -p 3000"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "yarn@4.13.0"
 }
