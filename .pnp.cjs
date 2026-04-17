@@ -157,7 +157,7 @@ const RAW_RUNTIME_STATE =
           ["fast-deep-equal", "npm:3.1.3"],\
           ["functional-red-black-tree", "npm:1.0.1"],\
           ["google-gax", "npm:4.6.1"],\
-          ["protobufjs", "npm:7.5.4"]\
+          ["protobufjs", "npm:7.5.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -233,7 +233,7 @@ const RAW_RUNTIME_STATE =
           ["@grpc/proto-loader", "npm:0.7.15"],\
           ["lodash.camelcase", "npm:4.3.0"],\
           ["long", "npm:5.3.2"],\
-          ["protobufjs", "npm:7.5.4"],\
+          ["protobufjs", "npm:7.5.5"],\
           ["yargs", "npm:17.7.2"]\
         ],\
         "linkType": "HARD"\
@@ -244,7 +244,7 @@ const RAW_RUNTIME_STATE =
           ["@grpc/proto-loader", "npm:0.8.0"],\
           ["lodash.camelcase", "npm:4.3.0"],\
           ["long", "npm:5.3.2"],\
-          ["protobufjs", "npm:7.5.4"],\
+          ["protobufjs", "npm:7.5.5"],\
           ["yargs", "npm:17.7.2"]\
         ],\
         "linkType": "HARD"\
@@ -1297,7 +1297,7 @@ const RAW_RUNTIME_STATE =
           ["firebase-admin", "npm:13.7.0"],\
           ["firebase-functions", "virtual:7c95582993590e3daec41f70bc819e13432bb1031b6d99e2ccce38a64eeeef9f4f8091df1266f80d6aa07d4bcd76a2a7d0f94b5fb0f8a297d0e67e100f192615#npm:7.2.2"],\
           ["graphql", null],\
-          ["protobufjs", "npm:7.5.4"]\
+          ["protobufjs", "npm:7.5.5"]\
         ],\
         "packagePeers": [\
           "@apollo/server",\
@@ -1533,7 +1533,7 @@ const RAW_RUNTIME_STATE =
           ["node-fetch", "virtual:11467afb7cf9e399c4ff54c4ab36fe5c4d3fece6ab1b8298fb82389f6d94b42475e1b5ec2fc3c9d191b12189c68dd36736b470173f436e08b9d4f8328c8cf29f#npm:2.7.0"],\
           ["object-hash", "npm:3.0.0"],\
           ["proto3-json-serializer", "npm:2.0.2"],\
-          ["protobufjs", "npm:7.5.4"],\
+          ["protobufjs", "npm:7.5.5"],\
           ["retry-request", "npm:7.0.2"],\
           ["uuid", "npm:9.0.1"]\
         ],\
@@ -2174,14 +2174,14 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/proto3-json-serializer-npm-2.0.2-294a3146b1-10c0.zip/node_modules/proto3-json-serializer/",\
         "packageDependencies": [\
           ["proto3-json-serializer", "npm:2.0.2"],\
-          ["protobufjs", "npm:7.5.4"]\
+          ["protobufjs", "npm:7.5.5"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["protobufjs", [\
-      ["npm:7.5.4", {\
-        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.5.4-4d6f681551/node_modules/protobufjs/",\
+      ["npm:7.5.5", {\
+        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.5.5-73830b5abb/node_modules/protobufjs/",\
         "packageDependencies": [\
           ["@protobufjs/aspromise", "npm:1.1.2"],\
           ["@protobufjs/base64", "npm:1.1.2"],\
@@ -2195,7 +2195,7 @@ const RAW_RUNTIME_STATE =
           ["@protobufjs/utf8", "npm:1.1.0"],\
           ["@types/node", "npm:25.5.0"],\
           ["long", "npm:5.3.2"],\
-          ["protobufjs", "npm:7.5.4"]\
+          ["protobufjs", "npm:7.5.5"]\
         ],\
         "linkType": "HARD"\
       }]\
