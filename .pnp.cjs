@@ -202,7 +202,7 @@ const RAW_RUNTIME_STATE =
           ["abort-controller", "npm:3.0.0"],\
           ["async-retry", "npm:1.3.3"],\
           ["duplexify", "npm:4.1.3"],\
-          ["fast-xml-parser", "npm:5.5.9"],\
+          ["fast-xml-parser", "npm:5.7.1"],\
           ["gaxios", "npm:6.7.1"],\
           ["google-auth-library", "npm:9.15.1"],\
           ["html-entities", "npm:2.6.0"],\
@@ -255,6 +255,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/@js-sdsl-ordered-map-npm-4.4.2-158f6c6b74-10c0.zip/node_modules/@js-sdsl/ordered-map/",\
         "packageDependencies": [\
           ["@js-sdsl/ordered-map", "npm:4.4.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@nodable/entities", [\
+      ["npm:2.1.0", {\
+        "packageLocation": "../../.yarn/berry/cache/@nodable-entities-npm-2.1.0-6eb9f06ac0-10c0.zip/node_modules/@nodable/entities/",\
+        "packageDependencies": [\
+          ["@nodable/entities", "npm:2.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1180,23 +1189,24 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fast-xml-builder", [\
-      ["npm:1.1.4", {\
-        "packageLocation": "../../.yarn/berry/cache/fast-xml-builder-npm-1.1.4-abdb1d2cae-10c0.zip/node_modules/fast-xml-builder/",\
+      ["npm:1.1.5", {\
+        "packageLocation": "../../.yarn/berry/cache/fast-xml-builder-npm-1.1.5-960811683a-10c0.zip/node_modules/fast-xml-builder/",\
         "packageDependencies": [\
-          ["fast-xml-builder", "npm:1.1.4"],\
+          ["fast-xml-builder", "npm:1.1.5"],\
           ["path-expression-matcher", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["fast-xml-parser", [\
-      ["npm:5.5.9", {\
-        "packageLocation": "../../.yarn/berry/cache/fast-xml-parser-npm-5.5.9-0801b67a48-10c0.zip/node_modules/fast-xml-parser/",\
+      ["npm:5.7.1", {\
+        "packageLocation": "../../.yarn/berry/cache/fast-xml-parser-npm-5.7.1-94929a6c96-10c0.zip/node_modules/fast-xml-parser/",\
         "packageDependencies": [\
-          ["fast-xml-builder", "npm:1.1.4"],\
-          ["fast-xml-parser", "npm:5.5.9"],\
-          ["path-expression-matcher", "npm:1.2.0"],\
-          ["strnum", "npm:2.2.2"]\
+          ["@nodable/entities", "npm:2.1.0"],\
+          ["fast-xml-builder", "npm:1.1.5"],\
+          ["fast-xml-parser", "npm:5.7.1"],\
+          ["path-expression-matcher", "npm:1.5.0"],\
+          ["strnum", "npm:2.2.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2158,6 +2168,13 @@ const RAW_RUNTIME_STATE =
           ["path-expression-matcher", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:1.5.0", {\
+        "packageLocation": "../../.yarn/berry/cache/path-expression-matcher-npm-1.5.0-73d258a112-10c0.zip/node_modules/path-expression-matcher/",\
+        "packageDependencies": [\
+          ["path-expression-matcher", "npm:1.5.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["path-to-regexp", [\
@@ -2469,10 +2486,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["strnum", [\
-      ["npm:2.2.2", {\
-        "packageLocation": "../../.yarn/berry/cache/strnum-npm-2.2.2-816fd1e52f-10c0.zip/node_modules/strnum/",\
+      ["npm:2.2.3", {\
+        "packageLocation": "../../.yarn/berry/cache/strnum-npm-2.2.3-3aa06fd3c4-10c0.zip/node_modules/strnum/",\
         "packageDependencies": [\
-          ["strnum", "npm:2.2.2"]\
+          ["strnum", "npm:2.2.3"]\
         ],\
         "linkType": "HARD"\
       }]\
