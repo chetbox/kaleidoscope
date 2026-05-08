@@ -1180,11 +1180,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fast-xml-builder", [\
-      ["npm:1.1.4", {\
-        "packageLocation": "../../.yarn/berry/cache/fast-xml-builder-npm-1.1.4-abdb1d2cae-10c0.zip/node_modules/fast-xml-builder/",\
+      ["npm:1.2.0", {\
+        "packageLocation": "../../.yarn/berry/cache/fast-xml-builder-npm-1.2.0-7008dbf494-10c0.zip/node_modules/fast-xml-builder/",\
         "packageDependencies": [\
-          ["fast-xml-builder", "npm:1.1.4"],\
-          ["path-expression-matcher", "npm:1.2.0"]\
+          ["fast-xml-builder", "npm:1.2.0"],\
+          ["path-expression-matcher", "npm:1.5.0"],\
+          ["xml-naming", "npm:0.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1193,7 +1194,7 @@ const RAW_RUNTIME_STATE =
       ["npm:5.5.9", {\
         "packageLocation": "../../.yarn/berry/cache/fast-xml-parser-npm-5.5.9-0801b67a48-10c0.zip/node_modules/fast-xml-parser/",\
         "packageDependencies": [\
-          ["fast-xml-builder", "npm:1.1.4"],\
+          ["fast-xml-builder", "npm:1.2.0"],\
           ["fast-xml-parser", "npm:5.5.9"],\
           ["path-expression-matcher", "npm:1.2.0"],\
           ["strnum", "npm:2.2.2"]\
@@ -2158,6 +2159,13 @@ const RAW_RUNTIME_STATE =
           ["path-expression-matcher", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:1.5.0", {\
+        "packageLocation": "../../.yarn/berry/cache/path-expression-matcher-npm-1.5.0-73d258a112-10c0.zip/node_modules/path-expression-matcher/",\
+        "packageDependencies": [\
+          ["path-expression-matcher", "npm:1.5.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["path-to-regexp", [\
@@ -2698,6 +2706,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/wrappy-npm-1.0.2-916de4d4b3-10c0.zip/node_modules/wrappy/",\
         "packageDependencies": [\
           ["wrappy", "npm:1.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["xml-naming", [\
+      ["npm:0.1.0", {\
+        "packageLocation": "../../.yarn/berry/cache/xml-naming-npm-0.1.0-6def6e9a28-10c0.zip/node_modules/xml-naming/",\
+        "packageDependencies": [\
+          ["xml-naming", "npm:0.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
