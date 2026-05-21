@@ -1254,7 +1254,7 @@ const RAW_RUNTIME_STATE =
           ["jsonwebtoken", "npm:9.0.3"],\
           ["jwks-rsa", "npm:3.2.2"],\
           ["node-forge", "npm:1.4.0"],\
-          ["uuid", "npm:11.1.0"]\
+          ["uuid", "npm:11.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2600,10 +2600,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["uuid", [\
-      ["npm:11.1.0", {\
-        "packageLocation": "../../.yarn/berry/cache/uuid-npm-11.1.0-61d0d08928-10c0.zip/node_modules/uuid/",\
+      ["npm:11.1.1", {\
+        "packageLocation": "../../.yarn/berry/cache/uuid-npm-11.1.1-311687c807-10c0.zip/node_modules/uuid/",\
         "packageDependencies": [\
-          ["uuid", "npm:11.1.0"]\
+          ["uuid", "npm:11.1.1"]\
         ],\
         "linkType": "HARD"\
       }],\
