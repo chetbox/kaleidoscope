@@ -361,10 +361,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@tootallnate/once", [\
-      ["npm:2.0.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@tootallnate-once-npm-2.0.0-e36cf4f140-10c0.zip/node_modules/@tootallnate/once/",\
+      ["npm:2.0.1", {\
+        "packageLocation": "../../.yarn/berry/cache/@tootallnate-once-npm-2.0.1-cd8ffd9654-10c0.zip/node_modules/@tootallnate/once/",\
         "packageDependencies": [\
-          ["@tootallnate/once", "npm:2.0.0"]\
+          ["@tootallnate/once", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1641,7 +1641,7 @@ const RAW_RUNTIME_STATE =
       ["npm:5.0.0", {\
         "packageLocation": "../../.yarn/berry/cache/http-proxy-agent-npm-5.0.0-7f1f121b83-10c0.zip/node_modules/http-proxy-agent/",\
         "packageDependencies": [\
-          ["@tootallnate/once", "npm:2.0.0"],\
+          ["@tootallnate/once", "npm:2.0.1"],\
           ["agent-base", "npm:6.0.2"],\
           ["debug", "virtual:27a95c269073dbdd4169a09f0c8f5e379b1ac1b07300e8a51e15eab9c87a24784c6fb87a66f9ef68f023cbbb1b0273be8de13d79e98ff26129a71ca366ad636d#npm:4.4.3"],\
           ["http-proxy-agent", "npm:5.0.0"]\
