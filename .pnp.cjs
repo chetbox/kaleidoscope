@@ -216,10 +216,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@grpc/grpc-js", [\
-      ["npm:1.14.3", {\
-        "packageLocation": "../../.yarn/berry/cache/@grpc-grpc-js-npm-1.14.3-4316f67c48-10c0.zip/node_modules/@grpc/grpc-js/",\
+      ["npm:1.14.4", {\
+        "packageLocation": "../../.yarn/berry/cache/@grpc-grpc-js-npm-1.14.4-27e11c00e7-10c0.zip/node_modules/@grpc/grpc-js/",\
         "packageDependencies": [\
-          ["@grpc/grpc-js", "npm:1.14.3"],\
+          ["@grpc/grpc-js", "npm:1.14.4"],\
           ["@grpc/proto-loader", "npm:0.8.0"],\
           ["@js-sdsl/ordered-map", "npm:4.4.2"]\
         ],\
@@ -1523,7 +1523,7 @@ const RAW_RUNTIME_STATE =
       ["npm:4.6.1", {\
         "packageLocation": "../../.yarn/berry/cache/google-gax-npm-4.6.1-b6a1a3a8a4-10c0.zip/node_modules/google-gax/",\
         "packageDependencies": [\
-          ["@grpc/grpc-js", "npm:1.14.3"],\
+          ["@grpc/grpc-js", "npm:1.14.4"],\
           ["@grpc/proto-loader", "npm:0.7.15"],\
           ["@types/long", "npm:4.0.2"],\
           ["abort-controller", "npm:3.0.0"],\
