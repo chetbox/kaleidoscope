@@ -157,7 +157,7 @@ const RAW_RUNTIME_STATE =
           ["fast-deep-equal", "npm:3.1.3"],\
           ["functional-red-black-tree", "npm:1.0.1"],\
           ["google-gax", "npm:4.6.1"],\
-          ["protobufjs", "npm:7.5.4"]\
+          ["protobufjs", "npm:7.6.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -233,7 +233,7 @@ const RAW_RUNTIME_STATE =
           ["@grpc/proto-loader", "npm:0.7.15"],\
           ["lodash.camelcase", "npm:4.3.0"],\
           ["long", "npm:5.3.2"],\
-          ["protobufjs", "npm:7.5.4"],\
+          ["protobufjs", "npm:7.6.4"],\
           ["yargs", "npm:17.7.2"]\
         ],\
         "linkType": "HARD"\
@@ -244,7 +244,7 @@ const RAW_RUNTIME_STATE =
           ["@grpc/proto-loader", "npm:0.8.0"],\
           ["lodash.camelcase", "npm:4.3.0"],\
           ["long", "npm:5.3.2"],\
-          ["protobufjs", "npm:7.5.4"],\
+          ["protobufjs", "npm:7.6.4"],\
           ["yargs", "npm:17.7.2"]\
         ],\
         "linkType": "HARD"\
@@ -287,30 +287,29 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@protobufjs/codegen", [\
-      ["npm:2.0.4", {\
-        "packageLocation": "../../.yarn/berry/cache/@protobufjs-codegen-npm-2.0.4-36e188bbe6-10c0.zip/node_modules/@protobufjs/codegen/",\
+      ["npm:2.0.5", {\
+        "packageLocation": "../../.yarn/berry/cache/@protobufjs-codegen-npm-2.0.5-bb74ff329d-10c0.zip/node_modules/@protobufjs/codegen/",\
         "packageDependencies": [\
-          ["@protobufjs/codegen", "npm:2.0.4"]\
+          ["@protobufjs/codegen", "npm:2.0.5"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@protobufjs/eventemitter", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@protobufjs-eventemitter-npm-1.1.0-029cc7d431-10c0.zip/node_modules/@protobufjs/eventemitter/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "../../.yarn/berry/cache/@protobufjs-eventemitter-npm-1.1.1-dbe0dfc812-10c0.zip/node_modules/@protobufjs/eventemitter/",\
         "packageDependencies": [\
-          ["@protobufjs/eventemitter", "npm:1.1.0"]\
+          ["@protobufjs/eventemitter", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@protobufjs/fetch", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@protobufjs-fetch-npm-1.1.0-ca857b7df4-10c0.zip/node_modules/@protobufjs/fetch/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "../../.yarn/berry/cache/@protobufjs-fetch-npm-1.1.1-b98d5396a8-10c0.zip/node_modules/@protobufjs/fetch/",\
         "packageDependencies": [\
           ["@protobufjs/aspromise", "npm:1.1.2"],\
-          ["@protobufjs/fetch", "npm:1.1.0"],\
-          ["@protobufjs/inquire", "npm:1.1.0"]\
+          ["@protobufjs/fetch", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -320,15 +319,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/@protobufjs-float-npm-1.0.2-5678f64d08-10c0.zip/node_modules/@protobufjs/float/",\
         "packageDependencies": [\
           ["@protobufjs/float", "npm:1.0.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@protobufjs/inquire", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@protobufjs-inquire-npm-1.1.0-3c7759e9ce-10c0.zip/node_modules/@protobufjs/inquire/",\
-        "packageDependencies": [\
-          ["@protobufjs/inquire", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -352,10 +342,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@protobufjs/utf8", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@protobufjs-utf8-npm-1.1.0-02c590807c-10c0.zip/node_modules/@protobufjs/utf8/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "../../.yarn/berry/cache/@protobufjs-utf8-npm-1.1.1-77a500f5e9-10c0.zip/node_modules/@protobufjs/utf8/",\
         "packageDependencies": [\
-          ["@protobufjs/utf8", "npm:1.1.0"]\
+          ["@protobufjs/utf8", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1297,7 +1287,7 @@ const RAW_RUNTIME_STATE =
           ["firebase-admin", "npm:13.7.0"],\
           ["firebase-functions", "virtual:7c95582993590e3daec41f70bc819e13432bb1031b6d99e2ccce38a64eeeef9f4f8091df1266f80d6aa07d4bcd76a2a7d0f94b5fb0f8a297d0e67e100f192615#npm:7.2.2"],\
           ["graphql", null],\
-          ["protobufjs", "npm:7.5.4"]\
+          ["protobufjs", "npm:7.6.4"]\
         ],\
         "packagePeers": [\
           "@apollo/server",\
@@ -1533,7 +1523,7 @@ const RAW_RUNTIME_STATE =
           ["node-fetch", "virtual:11467afb7cf9e399c4ff54c4ab36fe5c4d3fece6ab1b8298fb82389f6d94b42475e1b5ec2fc3c9d191b12189c68dd36736b470173f436e08b9d4f8328c8cf29f#npm:2.7.0"],\
           ["object-hash", "npm:3.0.0"],\
           ["proto3-json-serializer", "npm:2.0.2"],\
-          ["protobufjs", "npm:7.5.4"],\
+          ["protobufjs", "npm:7.6.4"],\
           ["retry-request", "npm:7.0.2"],\
           ["uuid", "npm:9.0.1"]\
         ],\
@@ -2174,28 +2164,27 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/proto3-json-serializer-npm-2.0.2-294a3146b1-10c0.zip/node_modules/proto3-json-serializer/",\
         "packageDependencies": [\
           ["proto3-json-serializer", "npm:2.0.2"],\
-          ["protobufjs", "npm:7.5.4"]\
+          ["protobufjs", "npm:7.6.4"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["protobufjs", [\
-      ["npm:7.5.4", {\
-        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.5.4-4d6f681551/node_modules/protobufjs/",\
+      ["npm:7.6.4", {\
+        "packageLocation": "./.yarn/unplugged/protobufjs-npm-7.6.4-97603a5239/node_modules/protobufjs/",\
         "packageDependencies": [\
           ["@protobufjs/aspromise", "npm:1.1.2"],\
           ["@protobufjs/base64", "npm:1.1.2"],\
-          ["@protobufjs/codegen", "npm:2.0.4"],\
-          ["@protobufjs/eventemitter", "npm:1.1.0"],\
-          ["@protobufjs/fetch", "npm:1.1.0"],\
+          ["@protobufjs/codegen", "npm:2.0.5"],\
+          ["@protobufjs/eventemitter", "npm:1.1.1"],\
+          ["@protobufjs/fetch", "npm:1.1.1"],\
           ["@protobufjs/float", "npm:1.0.2"],\
-          ["@protobufjs/inquire", "npm:1.1.0"],\
           ["@protobufjs/path", "npm:1.1.2"],\
           ["@protobufjs/pool", "npm:1.1.0"],\
-          ["@protobufjs/utf8", "npm:1.1.0"],\
+          ["@protobufjs/utf8", "npm:1.1.1"],\
           ["@types/node", "npm:25.5.0"],\
           ["long", "npm:5.3.2"],\
-          ["protobufjs", "npm:7.5.4"]\
+          ["protobufjs", "npm:7.6.4"]\
         ],\
         "linkType": "HARD"\
       }]\
